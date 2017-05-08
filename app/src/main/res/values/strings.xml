@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">FamilyLibrary</string>
+
+    <string name="navigation_drawer_open">打开</string>
+    <string name="navigation_drawer_close">关闭</string>
+    <string name="search">搜索</string>
+    <string name="item_books">图书管理</string>
+    <string name="item_readers">读者管理</string>
+    <string name="item_info">信息统计</string>
+    <string name="item_logout">退出</string>
+    <string name="title_home">首页</string>
+    <string name="title_info">图书信息</string>
+    <string name="item_add">添加</string>
+    <string name="title_add_book">添加图书</string>
+    <string name="title_edit_book">编辑图书</string>
+    <string name="item_delete">删除</string>
+    <string name="item_edit">编辑</string>
 </resources>
