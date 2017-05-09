@@ -2,37 +2,32 @@ package cn.edu.pku.app.familylibrary.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
 import cn.edu.pku.app.familylibrary.R;
 import cn.edu.pku.app.familylibrary.base.BaseActivity;
 import cn.edu.pku.app.familylibrary.model.Book;
+import cn.edu.pku.app.familylibrary.model.User;
 
-public class BookInfoEditActivity extends BaseActivity {
-
-    private Book book;
+public class UserInfoEditActivity extends BaseActivity {
 
     @Override
     public Class getTag(Class clazz) {
-        return BookInfoEditActivity.class;
+        return UserInfoEditActivity.class;
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_book_info_edit;
+        return R.layout.activity_user_info_edit;
     }
 
     @Override
     public void setupView(Bundle savedInstanceState) {
-        if (getIntent() != null && getIntent().getExtras() != null) {
-            book = getIntent().getExtras().getParcelable(KEY_BOOK);
-        }
-        setToolsBarTitle(book == null ? R.string.title_add_book : R.string.title_edit_book).isTranslucent().setToolbarTopMargin().homeAsUp();
+
     }
 
     @Override
@@ -40,12 +35,12 @@ public class BookInfoEditActivity extends BaseActivity {
 
     }
 
-    private static final String KEY_BOOK = "key_book";
+    private static final String KEY_USER = "key_user";
 
-    public static void goActivity(Activity context, Book book) {
-        Intent intent = new Intent(context, BookInfoEditActivity.class);
+    public static void goActivity(Activity context, User user) {
+        Intent intent = new Intent(context, UserInfoEditActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelable(KEY_BOOK, book);
+        bundle.putParcelable(KEY_USER, user);
         intent.putExtras(bundle);
         context.startActivity(intent);
     }

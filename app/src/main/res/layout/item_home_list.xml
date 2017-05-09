@@ -19,8 +19,7 @@
             android:layout_width="106dp"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/bg"
-            android:transitionName="info_thumb" />
+            android:src="@drawable/bg" />
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -1,0 +1,95 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.LoginActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="用户名"
+                android:textColor="@color/common_text"
+                android:textSize="@dimen/font_large" />
+
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="请输入用户名"
+                android:textColor="@color/common_text"
+                android:textColorHint="@color/common_text_hint"
+                android:textSize="@dimen/font_large" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="密码"
+                android:textColor="@color/common_text"
+                android:textSize="@dimen/font_large" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:textColor="@color/common_text"
+                android:textColorHint="@color/common_text_hint"
+                android:textSize="@dimen/font_large" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="20dp"
+            android:text="登录"
+            android:onClick="toLogin"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/font_larger" />
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

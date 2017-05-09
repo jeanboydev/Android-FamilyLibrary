@@ -62,12 +62,11 @@ public class BookInfoActivity extends BaseActivity {
 
     private static final String KEY_BOOK = "key_book";
 
-    @SafeVarargs
-    public static void goActivity(Activity context, Book book, Pair<View, String>... pairs) {
+    public static void goActivity(Activity context, Book book) {
         Intent intent = new Intent(context, BookInfoActivity.class);
         Bundle bundle = new Bundle();
         bundle.putParcelable(KEY_BOOK, book);
         intent.putExtras(bundle);
-        ActivityCompat.startActivity(context, intent, ActivityOptionsCompat.makeSceneTransitionAnimation(context, pairs).toBundle());
+        context.startActivity(intent);
     }
 }

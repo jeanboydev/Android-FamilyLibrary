@@ -7,21 +7,21 @@ import java.util.List;
 import cn.edu.pku.app.familylibrary.R;
 import cn.edu.pku.app.familylibrary.base.recyclerview.BaseViewHolder;
 import cn.edu.pku.app.familylibrary.base.recyclerview.RecyclerBaseAdapter;
-import cn.edu.pku.app.familylibrary.model.Book;
+import cn.edu.pku.app.familylibrary.model.User;
 
 /**
  * Created by jeanboy on 2017/5/8.
  */
 
-public class BookListAdapter extends RecyclerBaseAdapter<Book> {
+public class UserListAdapter extends RecyclerBaseAdapter<User> {
 
 
-    public BookListAdapter(@NonNull List<Book> dataList) {
-        super(dataList, R.layout.item_book_list);
+    public UserListAdapter(@NonNull List<User> dataList) {
+        super(dataList, R.layout.item_user_list);
     }
 
     @Override
-    public void convert(BaseViewHolder holder, Book book, final int position) {
+    public void convert(BaseViewHolder holder, User user, final int position) {
 
     }
 }

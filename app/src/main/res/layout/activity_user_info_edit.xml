@@ -29,10 +29,10 @@
                 android:paddingRight="@dimen/activity_horizontal_margin">
 
                 <TextView
-                    android:layout_width="50dp"
+                    android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="书名"
+                    android:text="姓名"
                     android:textColor="@color/common_text"
                     android:textSize="@dimen/font_large" />
 
@@ -42,7 +42,7 @@
                     android:layout_marginLeft="10dp"
                     android:background="@android:color/transparent"
                     android:gravity="center_vertical"
-                    android:hint="请输入图书名称"
+                    android:hint="请输入读者姓名"
                     android:textColor="@color/common_text"
                     android:textColorHint="@color/common_text_hint"
                     android:textSize="@dimen/font_large" />
@@ -59,143 +59,83 @@
                 android:paddingRight="@dimen/activity_horizontal_margin">
 
                 <TextView
-                    android:layout_width="50dp"
+                    android:layout_width="70dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="作者"
-                    android:textColor="@color/common_text"
-                    android:textSize="@dimen/font_large" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="center_vertical"
-                    android:hint="请输入作者姓名"
-                    android:textColor="@color/common_text"
-                    android:textColorHint="@color/common_text_hint"
-                    android:textSize="@dimen/font_large" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/white"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
-
-                <TextView
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="出版社"
-                    android:textColor="@color/common_text"
-                    android:textSize="@dimen/font_large" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="center_vertical"
-                    android:hint="请输入出版社名称"
-                    android:textColor="@color/common_text"
-                    android:textColorHint="@color/common_text_hint"
-                    android:textSize="@dimen/font_large" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/white"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
-
-                <TextView
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="书号"
-                    android:textColor="@color/common_text"
-                    android:textSize="@dimen/font_large" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@android:color/transparent"
-                    android:gravity="center_vertical"
-                    android:hint="请输入图书出版号"
-                    android:textColor="@color/common_text"
-                    android:textColorHint="@color/common_text_hint"
-                    android:textSize="@dimen/font_large" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/white"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
-
-                <TextView
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="数量"
-                    android:textColor="@color/common_text"
-                    android:textSize="@dimen/font_large" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:background="@android:color/transparent"
-                    android:digits="1234567890"
-                    android:gravity="center_vertical"
-                    android:inputType="phone|number"
-                    android:text="1"
-                    android:textColor="@color/common_text"
-                    android:textSize="@dimen/font_large" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:background="@android:color/white"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin">
-
-                <TextView
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="类别"
+                    android:text="性别"
                     android:textColor="@color/common_text"
                     android:textSize="@dimen/font_large" />
 
                 <Spinner
-                    android:id="@+id/book_type"
+                    android:id="@+id/user_gender"
                     android:layout_width="120dp"
                     android:gravity="center"
                     android:textAlignment="center"
                     android:layout_height="match_parent"
-                    android:entries="@array/book_type" />
+                    android:entries="@array/user_gender" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/white"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="联系方式"
+                    android:textColor="@color/common_text"
+                    android:textSize="@dimen/font_large" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:hint="请输入读者联系方式"
+                    android:textColor="@color/common_text"
+                    android:textColorHint="@color/common_text_hint"
+                    android:textSize="@dimen/font_large" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/white"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin">
+
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="备注"
+                    android:textColor="@color/common_text"
+                    android:textSize="@dimen/font_large" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:hint="请输入备注"
+                    android:textColor="@color/common_text"
+                    android:textColorHint="@color/common_text_hint"
+                    android:textSize="@dimen/font_large" />
+
+            </LinearLayout>
+
 
             <Button
                 android:id="@+id/btn_ok"

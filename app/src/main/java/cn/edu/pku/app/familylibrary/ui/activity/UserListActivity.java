@@ -1,15 +1,15 @@
 package cn.edu.pku.app.familylibrary.ui.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,52 +20,73 @@ import java.util.List;
 
 import cn.edu.pku.app.familylibrary.R;
 import cn.edu.pku.app.familylibrary.adapter.BookListAdapter;
+import cn.edu.pku.app.familylibrary.adapter.UserListAdapter;
 import cn.edu.pku.app.familylibrary.base.BaseActivity;
 import cn.edu.pku.app.familylibrary.base.recyclerview.BaseViewHolder;
 import cn.edu.pku.app.familylibrary.base.recyclerview.RecyclerBaseAdapter;
 import cn.edu.pku.app.familylibrary.base.recyclerview.decoration.SpaceItemDecoration;
-import cn.edu.pku.app.familylibrary.model.Book;
+import cn.edu.pku.app.familylibrary.model.User;
+import cn.edu.pku.app.familylibrary.ui.dialog.DialogUtil;
 
-public class BookListActivity extends BaseActivity {
+public class UserListActivity extends BaseActivity {
+
 
     private RecyclerView mRecyclerView;
 
-    private List<Book> dataList = new ArrayList<>();
-    private BookListAdapter bookListAdapter;
+    private List<User> dataList = new ArrayList<>();
+    private UserListAdapter userListAdapter;
+
+    private String[] operateItems = new String[]{"编辑", "删除"};
 
     @Override
     public Class getTag(Class clazz) {
-        return BookListActivity.class;
+        return UserListActivity.class;
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_book_list;
+        return R.layout.activity_user_list;
     }
 
     @Override
     public void setupView(Bundle savedInstanceState) {
-        setToolsBarTitle(R.string.item_books).isTranslucent().setToolbarTopMargin().homeAsUp();
+        setToolsBarTitle(R.string.item_readers).isTranslucent().setToolbarTopMargin().homeAsUp();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list_container);
 
-        bookListAdapter = new BookListAdapter(dataList);
-        mRecyclerView.setAdapter(bookListAdapter);
+        userListAdapter = new UserListAdapter(dataList);
+        mRecyclerView.setAdapter(userListAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.addItemDecoration(new SpaceItemDecoration(getResources().getDimensionPixelSize(R.dimen.recycler_item_space_line)));
 
-        bookListAdapter.setOnItemClickListener(new RecyclerBaseAdapter.OnItemClickListener() {
+        userListAdapter.setOnItemClickListener(new RecyclerBaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, BaseViewHolder holder, int position) {
-                BookInfoActivity.goActivity(BookListActivity.this, dataList.get(position));
+
             }
 
             @Override
-            public void onItemLongClick(View view, BaseViewHolder holder, int position) {
-
+            public void onItemLongClick(View view, BaseViewHolder holder, final int position) {
+                DialogUtil.showOperateDialog(UserListActivity.this, operateItems, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        if (which == 0) {
+                            UserInfoEditActivity.goActivity(UserListActivity.this, dataList.get(position));
+                        } else {
+                            DialogUtil.showWarningDialog(UserListActivity.this, R.string.msg_item_delete, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                        }
+                    }
+                });
             }
         });
+
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -78,9 +99,9 @@ public class BookListActivity extends BaseActivity {
     @Override
     public void initData() {
         for (int i = 0; i < 20; i++) {
-            dataList.add(new Book());
+            dataList.add(new User());
         }
-        bookListAdapter.notifyDataSetChanged();
+        userListAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -91,7 +112,7 @@ public class BookListActivity extends BaseActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Log.e(TAG, "===============");
-                BookInfoEditActivity.goActivity(BookListActivity.this, null);
+                UserInfoEditActivity.goActivity(UserListActivity.this, null);
                 return false;
             }
         });
@@ -99,7 +120,7 @@ public class BookListActivity extends BaseActivity {
     }
 
     public static void goActivity(Activity context) {
-        Intent intent = new Intent(context, BookListActivity.class);
+        Intent intent = new Intent(context, UserListActivity.class);
         context.startActivity(intent);
     }
 
