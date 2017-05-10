@@ -13,6 +13,8 @@
     <string name="item_add">添加</string>
     <string name="title_add_book">添加图书</string>
     <string name="title_edit_book">编辑图书</string>
+    <string name="title_add_user">添加读者信息</string>
+    <string name="title_edit_user">编辑读者信心</string>
     <string name="item_delete">删除</string>
     <string name="item_edit">编辑</string>
     <string name="dialog_operate">操作</string>
@@ -21,4 +23,5 @@
     <string name="dialog_warning">提示</string>
     <string name="msg_item_delete">确定要删除吗？</string>
     <string name="title_login">登录</string>
+    <string name="item_record">读者信息管理</string>
 </resources>

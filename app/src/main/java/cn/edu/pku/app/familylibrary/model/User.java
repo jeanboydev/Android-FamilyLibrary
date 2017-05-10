@@ -3,8 +3,6 @@ package cn.edu.pku.app.familylibrary.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import cn.edu.pku.app.familylibrary.constant.Gender;
-
 /**
  * Created by jeanboy on 2017/5/8.
  */
@@ -12,15 +10,16 @@ import cn.edu.pku.app.familylibrary.constant.Gender;
 public class User implements Parcelable{
 
     private String realName;
-    private Gender gender;
+    private int gender;
     private String contact;
     private String note;
     private long createTime;
 
     public User() {
+        this.createTime = System.currentTimeMillis();
     }
 
-    public User(String realName, Gender gender, String contact, String note) {
+    public User(String realName, int gender, String contact, String note) {
         this.realName = realName;
         this.gender = gender;
         this.contact = contact;
@@ -28,8 +27,10 @@ public class User implements Parcelable{
         this.createTime = System.currentTimeMillis();
     }
 
+
     protected User(Parcel in) {
         realName = in.readString();
+        gender = in.readInt();
         contact = in.readString();
         note = in.readString();
         createTime = in.readLong();
@@ -55,11 +56,11 @@ public class User implements Parcelable{
         this.realName = realName;
     }
 
-    public Gender getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
@@ -105,7 +106,9 @@ public class User implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+
         dest.writeString(realName);
+        dest.writeInt(gender);
         dest.writeString(contact);
         dest.writeString(note);
         dest.writeLong(createTime);

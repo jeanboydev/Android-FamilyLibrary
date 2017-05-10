@@ -14,12 +14,54 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <ImageView
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_thumb"-->
+            <!--android:layout_width="106dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:scaleType="centerCrop" />-->
+
+        <RelativeLayout
             android:id="@+id/iv_thumb"
             android:layout_width="106dp"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bg" />
+            android:background="#FFFFCC"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_name_cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textSize="10sp"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:text=""/>
+
+            <TextView
+                android:layout_below="@+id/tv_name_cover"
+                android:id="@+id/tv_author_cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="6sp"
+                android:gravity="center"
+                android:textColor="@color/common_text"
+                android:text=""/>
+
+            <TextView
+                android:id="@+id/tv_press_cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:textSize="4sp"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                android:textColor="@color/common_text_desc"
+                android:text=""/>
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -40,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:text="Android 源码情景分析源码情景分析源码情景分析源码情景分析"
+                    android:text=""
                     android:textColor="@color/common_text"
                     android:textSize="@dimen/font_large" />
 
@@ -51,7 +93,7 @@
                     android:layout_marginTop="10dp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="By Scott Master son"
+                    android:text=""
                     android:textColor="@color/common_text_desc"
                     android:textSize="@dimen/font_normal" />
 
@@ -80,15 +122,17 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tv_count"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="剩余 999"
+                        android:text="0"
                         android:textColor="@color/common_text"
                         android:textSize="@dimen/font_normal" />
 
 
                     <TextView
+                        android:id="@+id/tv_e_book"
                         android:layout_width="22dp"
                         android:layout_height="22dp"
                         android:layout_marginLeft="5dp"
@@ -96,11 +140,13 @@
                         android:gravity="center"
                         android:text="电"
                         android:maxLines="1"
+                        android:visibility="gone"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/font_small" />
 
 
                     <TextView
+                        android:id="@+id/tv_out"
                         android:layout_width="wrap_content"
                         android:layout_height="22dp"
                         android:layout_marginLeft="5dp"
@@ -108,6 +154,7 @@
                         android:gravity="center"
                         android:paddingLeft="5dp"
                         android:maxLines="1"
+                        android:visibility="gone"
                         android:paddingRight="5dp"
                         android:text="已借出"
                         android:textColor="@android:color/white"
@@ -122,8 +169,9 @@
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:clickable="false"
                     android:layout_alignParentRight="true"
-                    android:text="阅读" />
+                    android:text="查看" />
 
             </RelativeLayout>
         </RelativeLayout>

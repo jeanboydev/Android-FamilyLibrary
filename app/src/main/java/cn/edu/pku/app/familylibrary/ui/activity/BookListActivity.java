@@ -1,6 +1,7 @@
 package cn.edu.pku.app.familylibrary.ui.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -21,10 +22,13 @@ import java.util.List;
 import cn.edu.pku.app.familylibrary.R;
 import cn.edu.pku.app.familylibrary.adapter.BookListAdapter;
 import cn.edu.pku.app.familylibrary.base.BaseActivity;
+import cn.edu.pku.app.familylibrary.base.MainApplication;
 import cn.edu.pku.app.familylibrary.base.recyclerview.BaseViewHolder;
 import cn.edu.pku.app.familylibrary.base.recyclerview.RecyclerBaseAdapter;
 import cn.edu.pku.app.familylibrary.base.recyclerview.decoration.SpaceItemDecoration;
+import cn.edu.pku.app.familylibrary.constant.Constants;
 import cn.edu.pku.app.familylibrary.model.Book;
+import cn.edu.pku.app.familylibrary.ui.dialog.DialogUtil;
 
 public class BookListActivity extends BaseActivity {
 
@@ -32,6 +36,9 @@ public class BookListActivity extends BaseActivity {
 
     private List<Book> dataList = new ArrayList<>();
     private BookListAdapter bookListAdapter;
+
+
+    private String[] operateItems = new String[]{"编辑", "删除"};
 
     @Override
     public Class getTag(Class clazz) {
@@ -62,25 +69,45 @@ public class BookListActivity extends BaseActivity {
             }
 
             @Override
-            public void onItemLongClick(View view, BaseViewHolder holder, int position) {
-
-            }
-        });
-
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
+            public void onItemLongClick(View view, BaseViewHolder holder, final int position) {
+                DialogUtil.showOperateDialog(BookListActivity.this, operateItems, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        if (which == 0) {
+                            BookInfoEditActivity.goActivity(BookListActivity.this, dataList.get(position));
+                        } else {
+                            DialogUtil.showWarningDialog(BookListActivity.this, R.string.msg_item_delete, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    try {
+                                        MainApplication.getInstance().getBookList().remove(position);
+                                        dataList.remove(position);
+                                        bookListAdapter.notifyDataSetChanged();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                    dialog.dismiss();
+                                }
+                            });
+                        }
+                    }
+                });
             }
         });
     }
 
     @Override
     public void initData() {
-        for (int i = 0; i < 20; i++) {
-            dataList.add(new Book());
-        }
+        dataList.clear();
+        dataList.addAll(MainApplication.getInstance().getBookList());
         bookListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
     }
 
     @Override
@@ -90,7 +117,6 @@ public class BookListActivity extends BaseActivity {
         searchItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Log.e(TAG, "===============");
                 BookInfoEditActivity.goActivity(BookListActivity.this, null);
                 return false;
             }

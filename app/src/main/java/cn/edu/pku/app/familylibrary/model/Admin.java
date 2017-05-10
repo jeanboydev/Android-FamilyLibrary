@@ -1,7 +1,5 @@
 package cn.edu.pku.app.familylibrary.model;
 
-import cn.edu.pku.app.familylibrary.constant.Gender;
-
 /**
  * Created by jeanboy on 2017/5/8.
  */
@@ -14,7 +12,7 @@ public class Admin extends User {
     public Admin() {
     }
 
-    public Admin(String realName, Gender gender, String contact, String note, String username, String password) {
+    public Admin(String realName, int gender, String contact, String note, String username, String password) {
         super(realName, gender, contact, note);
         this.username = username;
         this.password = password;

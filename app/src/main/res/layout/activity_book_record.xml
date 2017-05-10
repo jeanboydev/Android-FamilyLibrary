@@ -27,19 +27,17 @@
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="用户名"
+                android:text="书名"
                 android:textColor="@color/common_text"
                 android:textSize="@dimen/font_large" />
 
-            <EditText
-                android:id="@+id/et_username"
+            <TextView
+                android:id="@+id/tv_book_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
-                android:hint="请输入用户名"
-                android:text="admin"
                 android:textColor="@color/common_text"
                 android:textColorHint="@color/common_text_hint"
                 android:textSize="@dimen/font_large" />
@@ -59,36 +57,77 @@
                 android:layout_width="70dp"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="密码"
+                android:text="读者姓名"
                 android:textColor="@color/common_text"
                 android:textSize="@dimen/font_large" />
 
-            <EditText
-                android:id="@+id/et_password"
+            <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@+id/btn_add"
+                    android:background="@android:color/transparent"
+                    android:gravity="center_vertical"
+                    android:inputType="textPassword"
+                    android:textColor="@color/common_text"
+                    android:textColorHint="@color/common_text_hint"
+                    android:textSize="@dimen/font_large" />
+
+                <Button
+                    android:id="@+id/btn_add"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:onClick="addReader"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/font_large"
+                    android:text="+" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:layout_width="50dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:background="@android:color/transparent"
                 android:gravity="center_vertical"
-                android:hint="请输入密码"
-                android:text="1234"
-                android:inputType="textPassword"
+                android:text="状态"
                 android:textColor="@color/common_text"
-                android:textColorHint="@color/common_text_hint"
                 android:textSize="@dimen/font_large" />
+
+            <Spinner
+                android:id="@+id/book_state"
+                android:layout_width="120dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:layout_height="match_parent"
+                android:entries="@array/book_state" />
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_login"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="20dp"
-            android:text="登录"
-            android:onClick="toLogin"
+            android:text="确定"
+            android:onClick="toSubmit"
             android:textColor="@android:color/white"
             android:textSize="@dimen/font_larger" />
 

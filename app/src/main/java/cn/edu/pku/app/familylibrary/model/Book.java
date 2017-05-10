@@ -3,40 +3,47 @@ package cn.edu.pku.app.familylibrary.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import cn.edu.pku.app.familylibrary.constant.Type;
+import cn.edu.pku.app.familylibrary.constant.Constants;
 
 /**
  * Created by jeanboy on 2017/5/8.
  */
 
-public class Book implements Parcelable{
+public class Book implements Parcelable {
 
     private String name;//书名
     private String number;//书号
     private String author;//作者
     private String press;//出版社
-    private Type type;//类别
+    private int type;//类别
+    private int status;
     private int count;
     private long createTime;
 
     public Book() {
+        this.status = Constants.BOOK_IN;
+        this.createTime = System.currentTimeMillis();
     }
 
-    public Book(String name, String number, String author, String press, Type type, int count) {
+    public Book(String name, String number, String author, String press, int type, int count) {
         this.name = name;
         this.number = number;
         this.author = author;
         this.press = press;
         this.type = type;
         this.count = count;
+        this.status = Constants.BOOK_IN;
         this.createTime = System.currentTimeMillis();
     }
+
 
     protected Book(Parcel in) {
         name = in.readString();
         number = in.readString();
         author = in.readString();
         press = in.readString();
+        type = in.readInt();
+        status = in.readInt();
         count = in.readInt();
         createTime = in.readLong();
     }
@@ -85,16 +92,20 @@ public class Book implements Parcelable{
         this.press = press;
     }
 
-    public Type getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(int type) {
         this.type = type;
     }
 
-    public boolean isCanRead() {
-        return this.count > 0;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getStatus() {
+        return status;
     }
 
     public void setCount(int count) {
@@ -121,6 +132,7 @@ public class Book implements Parcelable{
                 ", author='" + author + '\'' +
                 ", press='" + press + '\'' +
                 ", type=" + type +
+                ", status=" + status +
                 ", count=" + count +
                 ", createTime=" + createTime +
                 '}';
@@ -137,6 +149,8 @@ public class Book implements Parcelable{
         dest.writeString(number);
         dest.writeString(author);
         dest.writeString(press);
+        dest.writeInt(type);
+        dest.writeInt(status);
         dest.writeInt(count);
         dest.writeLong(createTime);
     }

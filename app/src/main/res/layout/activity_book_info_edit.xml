@@ -37,6 +37,7 @@
                     android:textSize="@dimen/font_large" />
 
                 <EditText
+                    android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -67,6 +68,7 @@
                     android:textSize="@dimen/font_large" />
 
                 <EditText
+                    android:id="@+id/et_author"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -97,6 +99,7 @@
                     android:textSize="@dimen/font_large" />
 
                 <EditText
+                    android:id="@+id/et_press"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -127,6 +130,7 @@
                     android:textSize="@dimen/font_large" />
 
                 <EditText
+                    android:id="@+id/et_number"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -157,6 +161,7 @@
                     android:textSize="@dimen/font_large" />
 
                 <EditText
+                    android:id="@+id/et_count"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -206,6 +211,7 @@
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="20dp"
                 android:text="确定"
+                android:onClick="toSubmit"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/font_larger" />
 

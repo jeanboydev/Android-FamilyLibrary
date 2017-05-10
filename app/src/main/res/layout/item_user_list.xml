@@ -20,7 +20,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
-            android:text="张三"
+            android:text=""
             android:textColor="@color/common_text"
             android:textSize="@dimen/font_large" />
 
@@ -40,7 +40,8 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="999"
+                android:visibility="gone"
+                android:text="0"
                 android:textColor="@color/common_text"
                 android:textSize="@dimen/font_large" />
         </LinearLayout>

@@ -22,6 +22,6 @@ public class UserListAdapter extends RecyclerBaseAdapter<User> {
 
     @Override
     public void convert(BaseViewHolder holder, User user, final int position) {
-
+        holder.setText(R.id.tv_name,user.getRealName());
     }
 }

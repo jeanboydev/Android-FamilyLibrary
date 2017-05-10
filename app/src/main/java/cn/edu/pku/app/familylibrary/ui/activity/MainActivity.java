@@ -101,9 +101,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public void initData() {
-        for (int i = 0; i < 20; i++) {
-            dataList.add(new Book());
-        }
+        dataList.clear();
+        dataList.addAll(MainApplication.getInstance().getBookList());
         homeAdapter.notifyDataSetChanged();
     }
 
@@ -169,20 +168,23 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
-        switch (id) {
-            case R.id.nav_books:
-                BookListActivity.goActivity(MainActivity.this);
-                break;
-            case R.id.nav_readers:
-                UserListActivity.goActivity(MainActivity.this);
-                break;
-            case R.id.nav_info:
-                break;
-            case R.id.nav_logout:
-                MainApplication.getInstance().setAdmin(null);
-                refreshMenu();
-                break;
+        if (MainApplication.getInstance().isOnline()) {
+            switch (id) {
+                case R.id.nav_books:
+                    BookListActivity.goActivity(MainActivity.this);
+                    break;
+                case R.id.nav_readers:
+                    UserListActivity.goActivity(MainActivity.this);
+                    break;
+                case R.id.nav_info:
+                    break;
+                case R.id.nav_logout:
+                    MainApplication.getInstance().setAdmin(null);
+                    refreshMenu();
+                    break;
+            }
+        } else {
+            LoginActivity.goActivity(MainActivity.this);
         }
 
         mDrawerLayout.closeDrawer(GravityCompat.START);

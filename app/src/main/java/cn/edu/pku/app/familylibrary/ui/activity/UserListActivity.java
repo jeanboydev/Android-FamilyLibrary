@@ -22,9 +22,13 @@ import cn.edu.pku.app.familylibrary.R;
 import cn.edu.pku.app.familylibrary.adapter.BookListAdapter;
 import cn.edu.pku.app.familylibrary.adapter.UserListAdapter;
 import cn.edu.pku.app.familylibrary.base.BaseActivity;
+import cn.edu.pku.app.familylibrary.base.MainApplication;
 import cn.edu.pku.app.familylibrary.base.recyclerview.BaseViewHolder;
 import cn.edu.pku.app.familylibrary.base.recyclerview.RecyclerBaseAdapter;
 import cn.edu.pku.app.familylibrary.base.recyclerview.decoration.SpaceItemDecoration;
+import cn.edu.pku.app.familylibrary.constant.Constants;
+import cn.edu.pku.app.familylibrary.model.Book;
+import cn.edu.pku.app.familylibrary.model.Record;
 import cn.edu.pku.app.familylibrary.model.User;
 import cn.edu.pku.app.familylibrary.ui.dialog.DialogUtil;
 
@@ -37,6 +41,8 @@ public class UserListActivity extends BaseActivity {
     private UserListAdapter userListAdapter;
 
     private String[] operateItems = new String[]{"编辑", "删除"};
+
+    private Book bookRecord;
 
     @Override
     public Class getTag(Class clazz) {
@@ -52,6 +58,11 @@ public class UserListActivity extends BaseActivity {
     public void setupView(Bundle savedInstanceState) {
         setToolsBarTitle(R.string.item_readers).isTranslucent().setToolbarTopMargin().homeAsUp();
 
+
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            bookRecord = getIntent().getExtras().getParcelable(Constants.RESULT_USER);
+        }
+
         mRecyclerView = (RecyclerView) findViewById(R.id.list_container);
 
         userListAdapter = new UserListAdapter(dataList);
@@ -63,7 +74,12 @@ public class UserListActivity extends BaseActivity {
         userListAdapter.setOnItemClickListener(new RecyclerBaseAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, BaseViewHolder holder, int position) {
-
+                if (bookRecord != null) {
+                    Intent intent = new Intent();
+                    intent.putExtra(Constants.RESULT_USER, dataList.get(position));
+                    setResult(RESULT_OK);
+                    UserListActivity.this.finish();
+                }
             }
 
             @Override
@@ -78,6 +94,13 @@ public class UserListActivity extends BaseActivity {
                             DialogUtil.showWarningDialog(UserListActivity.this, R.string.msg_item_delete, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    try {
+                                        MainApplication.getInstance().getUserList().remove(position);
+                                        dataList.remove(position);
+                                        userListAdapter.notifyDataSetChanged();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                     dialog.dismiss();
                                 }
                             });
@@ -98,10 +121,15 @@ public class UserListActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        for (int i = 0; i < 20; i++) {
-            dataList.add(new User());
-        }
+        dataList.clear();
+        dataList.addAll(MainApplication.getInstance().getUserList());
         userListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
     }
 
     @Override
@@ -111,7 +139,6 @@ public class UserListActivity extends BaseActivity {
         searchItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Log.e(TAG, "===============");
                 UserInfoEditActivity.goActivity(UserListActivity.this, null);
                 return false;
             }

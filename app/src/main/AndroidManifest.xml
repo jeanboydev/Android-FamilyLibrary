@@ -34,6 +34,7 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:theme="@style/AppTheme.SlideHorizontal" />
+        <activity android:name=".ui.activity.BookRecordActivity"></activity>
     </application>
 
 </manifest>
