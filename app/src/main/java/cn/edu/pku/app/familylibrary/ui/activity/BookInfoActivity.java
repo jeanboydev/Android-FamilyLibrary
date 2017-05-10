@@ -85,6 +85,8 @@ public class BookInfoActivity extends BaseActivity {
         tv_e_book = (TextView) findViewById(R.id.tv_e_book);
         tv_out = (TextView) findViewById(R.id.tv_out);
 
+        btn_add.setVisibility(MainApplication.getInstance().isOnline() ? View.VISIBLE : View.GONE);
+
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

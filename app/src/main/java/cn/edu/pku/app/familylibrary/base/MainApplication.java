@@ -93,7 +93,8 @@ public class MainApplication extends Application {
     }
 
     public void init(Context context) {
-        bookList.add(new Book("Effective Java", "B0000010", "[美] Joshua Bloch ", "机械工业出版社", Constants.BOOK_NORMAL, 1));
+        Book book = new Book("Effective Java", "B0000010", "[美] Joshua Bloch ", "机械工业出版社", Constants.BOOK_NORMAL, 1);
+        bookList.add(book);
         bookList.add(new Book("福尔摩斯探案全集", "B0000009", "[英] 阿·柯南道尔", "群众出版社", Constants.BOOK_E, 3));
         bookList.add(new Book("小王子", "B0000001", "[法] 圣埃克苏佩里", "人民文学出版社", Constants.BOOK_NORMAL, 1));
         bookList.add(new Book("围城", "B0000002", "钱钟书", "人民文学出版社", Constants.BOOK_NORMAL, 1));
@@ -103,6 +104,18 @@ public class MainApplication extends Application {
         bookList.add(new Book("红楼梦", "B0000005", "[清] 曹雪芹", " 人民文学出版社", Constants.BOOK_NORMAL, 1));
         bookList.add(new Book("笑傲江湖", "B0000008", "金庸", "人民文学出版社", Constants.BOOK_NORMAL, 4));
         bookList.add(new Book("百年孤独", "B0000007", "[哥伦比亚] 加西亚·马尔克斯", "南海出版公司", Constants.BOOK_E, 1));
+
+
+        User user1 = new User("测试读者1", Constants.GENDER_BOY, "16666666666", "内置测试读者用户1");
+        User user2 = new User("测试读者2", Constants.GENDER_GIRL, "17777777777", "内置测试读者用户2");
+        userList.add(user1);
+        userList.add(user2);
+
+        Record testRecord1 = new Record(user1, book, Constants.BOOK_IN);
+        Record testRecord2 = new Record(user2, book, Constants.BOOK_OUT);
+
+        addBookRecord(testRecord1);
+        addBookRecord(testRecord2);
     }
 
 
