@@ -68,7 +68,7 @@ public class BookRecordActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (RESULT_OK == resultCode) {
-            User selectUser = data.getExtras().getParcelable(Constants.RESULT_USER);
+            User selectUser = data.getParcelableExtra(Constants.RESULT_USER);
             record.setUser(selectUser);
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -86,6 +86,7 @@ public class BookRecordActivity extends BaseActivity {
 
     public void addReader(View view) {
         Intent intent = new Intent(BookRecordActivity.this, UserListActivity.class);
+        intent.putExtra(Constants.RESULT_USER, new Book());
         startActivityForResult(intent, Constants.RESULT_SELECT_USER);
     }
 

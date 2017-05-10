@@ -27,7 +27,6 @@ public class MainApplication extends Application {
 
     private List<Book> bookList = new ArrayList<>();
     private List<User> userList = new ArrayList<>();
-    private List<Record> recordList = new ArrayList<>();
     private Map<String, List<Record>> bookRecordMap = new HashMap<>();//book number,Record
 
     private Admin admin;
@@ -113,9 +112,9 @@ public class MainApplication extends Application {
 
         Record testRecord1 = new Record(user1, book, Constants.BOOK_IN);
         Record testRecord2 = new Record(user2, book, Constants.BOOK_OUT);
-
-        addBookRecord(testRecord1);
+        book.setStatus(Constants.BOOK_OUT);
         addBookRecord(testRecord2);
+        addBookRecord(testRecord1);
     }
 
 

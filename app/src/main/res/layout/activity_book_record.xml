@@ -73,7 +73,6 @@
                     android:layout_toLeftOf="@+id/btn_add"
                     android:background="@android:color/transparent"
                     android:gravity="center_vertical"
-                    android:inputType="textPassword"
                     android:textColor="@color/common_text"
                     android:textColorHint="@color/common_text_hint"
                     android:textSize="@dimen/font_large" />

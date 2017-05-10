@@ -57,7 +57,7 @@ public class BookInfoEditActivity extends BaseActivity {
         et_author.setText(book.getAuthor());
         et_press.setText(book.getPress());
         et_number.setText(book.getNumber());
-        et_count.setText(book.getCount());
+        et_count.setText(String.valueOf(book.getCount()));
         if (Constants.BOOK_E == book.getType()) {
             book_type.setSelection(1, true);
         }
