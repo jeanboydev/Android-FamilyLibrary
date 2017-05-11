@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -155,16 +156,33 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                if (TextUtils.isEmpty(query)) {
+                    initData();
+                } else {
+                    List<Book> searchList = MainApplication.getInstance().getBookByKeyword(query);
+                    dataList.clear();
+                    dataList.addAll(searchList);
+                    homeAdapter.notifyDataSetChanged();
+                }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (TextUtils.isEmpty(newText)) {
+                    initData();
+                } else {
+                    List<Book> searchList = MainApplication.getInstance().getBookByKeyword(newText);
+                    dataList.clear();
+                    dataList.addAll(searchList);
+                    homeAdapter.notifyDataSetChanged();
+                }
                 return false;
             }
         });
         return super.onCreateOptionsMenu(menu);
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -178,6 +196,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                     UserListActivity.goActivity(MainActivity.this);
                     break;
                 case R.id.nav_info:
+                    InformationActivity.goActivity(MainActivity.this);
                     break;
                 case R.id.nav_logout:
                     MainApplication.getInstance().setAdmin(null);

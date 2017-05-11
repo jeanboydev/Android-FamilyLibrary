@@ -22,6 +22,8 @@ public class BookRecordActivity extends BaseActivity {
 
     private Record record;
 
+    private boolean isAdded = false;
+
     @Override
     public Class getTag(Class clazz) {
         return BookRecordActivity.class;
@@ -45,6 +47,8 @@ public class BookRecordActivity extends BaseActivity {
             return;
         }
 
+        isAdded = record.getUser() == null;
+
         tv_book_name = (TextView) findViewById(R.id.tv_book_name);
         tv_username = (TextView) findViewById(R.id.tv_username);
         book_state = (Spinner) findViewById(R.id.book_state);
@@ -67,11 +71,16 @@ public class BookRecordActivity extends BaseActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (RESULT_OK == resultCode) {
-            User selectUser = data.getParcelableExtra(Constants.RESULT_USER);
-            record.setUser(selectUser);
-        }
         super.onActivityResult(requestCode, resultCode, data);
+        if (RESULT_OK == resultCode && Constants.RESULT_SELECT_USER == requestCode) {
+            if (data != null) {
+                User selectUser = data.getExtras().getParcelable(Constants.RESULT_USER);
+                if (selectUser != null) {
+                    record.setUser(selectUser);
+                    tv_username.setText(selectUser.getRealName());
+                }
+            }
+        }
     }
 
     private static final String KEY_RECORD = "key_record";
@@ -92,7 +101,12 @@ public class BookRecordActivity extends BaseActivity {
 
     public void toSubmit(View view) {
         record.setStatus(book_state.getSelectedItemPosition() == 0 ? Constants.BOOK_OUT : Constants.BOOK_IN);
-        MainApplication.getInstance().addBookRecord(record);
+        record.getBook().setStatus(record.getStatus());
+        if (isAdded) {
+            MainApplication.getInstance().addBookRecord(record);
+        } else {
+            MainApplication.getInstance().updateBookRecord(record);
+        }
         this.finish();
     }
 }

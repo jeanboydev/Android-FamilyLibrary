@@ -76,8 +76,10 @@ public class UserListActivity extends BaseActivity {
             public void onItemClick(View view, BaseViewHolder holder, int position) {
                 if (bookRecord != null) {
                     Intent intent = new Intent();
-                    intent.putExtra(Constants.RESULT_USER, dataList.get(position));
-                    setResult(RESULT_OK);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(Constants.RESULT_USER, dataList.get(position));
+                    intent.putExtras(bundle);
+                    setResult(RESULT_OK, intent);
                     UserListActivity.this.finish();
                 }
             }

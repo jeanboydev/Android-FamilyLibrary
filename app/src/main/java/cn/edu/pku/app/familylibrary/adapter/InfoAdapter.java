@@ -1,6 +1,7 @@
 package cn.edu.pku.app.familylibrary.adapter;
 
 import android.support.annotation.NonNull;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -30,5 +31,8 @@ public class InfoAdapter extends RecyclerBaseAdapter<Record> {
 
         holder.setText(R.id.tv_time, DateUtil.dateFormat(record.getCreateTime()));
         holder.setText(R.id.tv_state, Constants.BOOK_OUT == record.getStatus() ? "在读" : "已还");
+        ((TextView) holder.getView(R.id.tv_state)).setTextColor(Constants.BOOK_OUT == record.getStatus() ?
+                holder.getConvertView().getResources().getColor(R.color.colorAccent) :
+                holder.getConvertView().getResources().getColor(R.color.common_text));
     }
 }

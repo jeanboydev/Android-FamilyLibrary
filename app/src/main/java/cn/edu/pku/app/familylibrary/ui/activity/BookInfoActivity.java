@@ -90,7 +90,11 @@ public class BookInfoActivity extends BaseActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BookRecordActivity.goActivity(BookInfoActivity.this, new Record(null, book));
+                if (Constants.BOOK_IN != book.getStatus()) {
+                    showToastMessage("该书还未归还，无法外借！");
+                    return;
+                }
+                BookRecordActivity.goActivity(BookInfoActivity.this, new Record(null, book, book.getStatus()));
             }
         });
 
@@ -124,29 +128,32 @@ public class BookInfoActivity extends BaseActivity {
 
             @Override
             public void onItemLongClick(View view, BaseViewHolder holder, final int position) {
-                DialogUtil.showOperateDialog(BookInfoActivity.this, operateItems, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        if (which == 0) {
-                            BookRecordActivity.goActivity(BookInfoActivity.this, dataList.get(position));
-                        } else {
-                            DialogUtil.showWarningDialog(BookInfoActivity.this, R.string.msg_item_delete, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    try {
-                                        MainApplication.getInstance().removeBookRecord(dataList.get(position));
-                                        dataList.remove(position);
-                                        infoAdapter.notifyDataSetChanged();
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
+                if (position == 0) {
+                    DialogUtil.showOperateDialog(BookInfoActivity.this, operateItems, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            if (which == 0) {
+                                BookRecordActivity.goActivity(BookInfoActivity.this, dataList.get(position));
+                            } else {
+                                DialogUtil.showWarningDialog(BookInfoActivity.this, R.string.msg_item_delete, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        try {
+                                            MainApplication.getInstance().removeBookRecord(dataList.get(position));
+                                            dataList.remove(position);
+                                            book.setStatus(Constants.BOOK_IN);
+                                            infoAdapter.notifyDataSetChanged();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        dialog.dismiss();
                                     }
-                                    dialog.dismiss();
-                                }
-                            });
+                                });
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
     }
@@ -158,6 +165,9 @@ public class BookInfoActivity extends BaseActivity {
             dataList.clear();
             dataList.addAll(bookRecordList);
             infoAdapter.notifyDataSetChanged();
+            if (bookRecordList.size() > 0) {
+                book.setStatus(bookRecordList.get(0).getStatus());
+            }
         }
     }
 

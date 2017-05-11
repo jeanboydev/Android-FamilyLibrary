@@ -57,7 +57,20 @@ public class MainApplication extends Application {
         if (recordList == null) {
             recordList = new ArrayList<>();
         }
-        recordList.add(record);
+        recordList.add(0, record);
+        bookRecordMap.put(record.getBook().getNumber(), recordList);
+    }
+
+    public void updateBookRecord(Record record) {
+        if (record.getBook() == null) return;
+        List<Record> recordList = getBookRecordList(record.getBook());
+        if (recordList == null) return;
+        for (Record r : recordList) {
+            if (r.getBook().getNumber().equals(record.getBook().getNumber())
+                    && r.getUser().getRealName().equals(record.getUser().getRealName())) {
+                r.setStatus(record.getStatus());
+            }
+        }
         bookRecordMap.put(record.getBook().getNumber(), recordList);
     }
 
@@ -81,6 +94,10 @@ public class MainApplication extends Application {
 
     public List<Record> getBookRecordList(Book book) {
         return bookRecordMap.get(book.getNumber());
+    }
+
+    public Map<String, List<Record>> getBookRecordMap() {
+        return bookRecordMap;
     }
 
     @Override
@@ -113,9 +130,28 @@ public class MainApplication extends Application {
         Record testRecord1 = new Record(user1, book, Constants.BOOK_IN);
         Record testRecord2 = new Record(user2, book, Constants.BOOK_OUT);
         book.setStatus(Constants.BOOK_OUT);
-        addBookRecord(testRecord2);
         addBookRecord(testRecord1);
+        addBookRecord(testRecord2);
     }
 
 
+    public List<Book> getBookByKeyword(String key) {
+        List<Book> result = new ArrayList<>();
+        for (Book book : bookList) {
+            if (book.getName().contains(key) || book.getAuthor().contains(key) || book.getNumber().contains(key)) {
+                result.add(book);
+            }
+        }
+        return result;
+    }
+
+    public List<Book> getBookByType(int type) {
+        List<Book> result = new ArrayList<>();
+        for (Book book : bookList) {
+            if (type == book.getType()) {
+                result.add(book);
+            }
+        }
+        return result;
+    }
 }

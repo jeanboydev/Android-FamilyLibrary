@@ -3,7 +3,7 @@
 
     <string name="navigation_drawer_open">打开</string>
     <string name="navigation_drawer_close">关闭</string>
-    <string name="search">搜索</string>
+    <string name="search">输入书名,作者,书号搜索...</string>
     <string name="item_books">图书管理</string>
     <string name="item_readers">读者管理</string>
     <string name="item_info">信息统计</string>
@@ -24,4 +24,5 @@
     <string name="msg_item_delete">确定要删除吗？</string>
     <string name="title_login">登录</string>
     <string name="item_record">读者信息管理</string>
+    <string name="item_search">搜索</string>
 </resources>
