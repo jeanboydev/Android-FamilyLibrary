@@ -138,7 +138,9 @@ public class MainApplication extends Application {
     public List<Book> getBookByKeyword(String key) {
         List<Book> result = new ArrayList<>();
         for (Book book : bookList) {
-            if (book.getName().contains(key) || book.getAuthor().contains(key) || book.getNumber().contains(key)) {
+            if (book.getName().toLowerCase().contains(key.toLowerCase())
+                    || book.getAuthor().toLowerCase().contains(key.toLowerCase())
+                    || book.getNumber().toLowerCase().contains(key.toLowerCase())) {
                 result.add(book);
             }
         }
