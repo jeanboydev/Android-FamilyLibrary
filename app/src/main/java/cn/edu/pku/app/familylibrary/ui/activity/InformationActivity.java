@@ -26,7 +26,7 @@ public class InformationActivity extends BaseActivity {
 
     @Override
     public void setupView(Bundle savedInstanceState) {
-        setToolsBarTitle(R.string.item_readers).homeAsUp();
+        setToolsBarTitle(R.string.item_info).homeAsUp();
 
         tv_book_count = (TextView) findViewById(R.id.tv_book_count);
         tv_normal_book_count = (TextView) findViewById(R.id.tv_normal_book_count);

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FamilyLibrary</string>
+    <string name="app_name">图书管理</string>
 
     <string name="navigation_drawer_open">打开</string>
     <string name="navigation_drawer_close">关闭</string>
@@ -14,7 +14,7 @@
     <string name="title_add_book">添加图书</string>
     <string name="title_edit_book">编辑图书</string>
     <string name="title_add_user">添加读者信息</string>
-    <string name="title_edit_user">编辑读者信心</string>
+    <string name="title_edit_user">编辑读者信息</string>
     <string name="item_delete">删除</string>
     <string name="item_edit">编辑</string>
     <string name="dialog_operate">操作</string>

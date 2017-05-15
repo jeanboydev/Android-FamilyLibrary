@@ -51,21 +51,39 @@ public class MainApplication extends Application {
         return userList;
     }
 
-    public void addBookRecord(Record record) {
-        if (record.getBook() == null) return;
-        List<Record> recordList = getBookRecordList(record.getBook());
-        if (recordList == null) {
-            recordList = new ArrayList<>();
-        }
-        recordList.add(0, record);
-        bookRecordMap.put(record.getBook().getNumber(), recordList);
+    /**
+     * 获取book借阅记录
+     * @param book
+     * @return
+     */
+    public List<Record> getBookRecordList(Book book) {
+        return bookRecordMap.get(book.getNumber());
     }
 
+    /**
+     * 添加借阅者记录
+     * @param record
+     */
+    public void addBookRecord(Record record) {
+        if (record.getBook() == null) return;
+        List<Record> recordList = getBookRecordList(record.getBook());//获取已存在记录
+        if (recordList == null) {//没有记录新建
+            recordList = new ArrayList<>();
+        }
+        recordList.add(0, record);//添加记录
+        bookRecordMap.put(record.getBook().getNumber(), recordList);//添加到记录map中
+    }
+
+    /**
+     * 更新借阅记录信息
+     * @param record
+     */
     public void updateBookRecord(Record record) {
         if (record.getBook() == null) return;
-        List<Record> recordList = getBookRecordList(record.getBook());
+        List<Record> recordList = getBookRecordList(record.getBook());//获取已存在记录
         if (recordList == null) return;
         for (Record r : recordList) {
+            //根据书名，读者姓名匹配
             if (r.getBook().getNumber().equals(record.getBook().getNumber())
                     && r.getUser().getRealName().equals(record.getUser().getRealName())) {
                 r.setStatus(record.getStatus());
@@ -90,10 +108,6 @@ public class MainApplication extends Application {
                 }
             }
         }
-    }
-
-    public List<Record> getBookRecordList(Book book) {
-        return bookRecordMap.get(book.getNumber());
     }
 
     public Map<String, List<Record>> getBookRecordMap() {
@@ -134,10 +148,15 @@ public class MainApplication extends Application {
         addBookRecord(testRecord2);
     }
 
-
+    /**
+     * 图书搜索
+     * @param key
+     * @return
+     */
     public List<Book> getBookByKeyword(String key) {
         List<Book> result = new ArrayList<>();
         for (Book book : bookList) {
+            //根据书名，书号，读者姓名匹配
             if (book.getName().toLowerCase().contains(key.toLowerCase())
                     || book.getAuthor().toLowerCase().contains(key.toLowerCase())
                     || book.getNumber().toLowerCase().contains(key.toLowerCase())) {
